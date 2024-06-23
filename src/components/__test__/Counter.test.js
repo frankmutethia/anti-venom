@@ -1,5 +1,6 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Counter } from "../Counter";
+import '@testing-library/jest-dom';
 
 
 describe("Counter Component Test", () => {
@@ -14,5 +15,11 @@ describe("Counter Component Test", () => {
         const { getByTestId } = render(<Counter />);
         const charLength = getByTestId("charLength");
         expect(charLength.innerHTML).toBe("Character: 0");
+    });
+
+    test("render the word result", () => {
+        render(<Counter />);
+        const wordLength = screen.getByText("Word: 0");
+        expect(wordLength).toBeTruthy();
     });
 })// completely takes description of this block
